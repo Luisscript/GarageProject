@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class InvalidLicensePlateException {
+public class InvalidLicensePlateException extends IllegalArgumentException{
+    public InvalidLicensePlateException(String message){
+        super(message);
+    }
 }

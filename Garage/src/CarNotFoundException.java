@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class CarNotFoundException {
+public class CarNotFoundException extends IllegalArgumentException {
+    public CarNotFoundException(String message) {
+        super(message);
+    }
 }

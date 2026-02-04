@@ -1,5 +1,5 @@
-public class EngineStateInvalidException extends IllegalStateException{
-    public EngineStateInvalidException(String message){
+public class InvalidEngineStateException extends IllegalStateException{
+    public InvalidEngineStateException(String message){
         super(message);
     }
 }

@@ -15,28 +15,28 @@ public class Engine {
     private static Map<String, Engine> engines = new HashMap<>();
     private static final String isNumeric = "(\\d+\\.?\\d+)$";
 
-    public Engine(String engineId, String engineType, String volume, String fuelType, String horsePower, String torque){
-        if(engineId == null){
-            throw new IllegalArgumentException("Engine ID is null, this is invalid!");
+    public Engine(String engineId, String engineType, String volume, String fuelType, String horsePower, String torque) throws InvalidEngineEntryException{
+        if(engineId.isBlank()){
+            throw new InvalidEngineIdException("Engine ID is empty, this is invalid!");
         }else{
             if(engines.containsKey(engineId)){
-                throw new IllegalArgumentException("This engine id already exists!");
+                throw new InvalidEngineEntryException("This engine id already exists!");
             }
         }
-        if(engineType == null){
-            throw new IllegalArgumentException("Engine type is null, this is invalid!");
+        if(engineType.isBlank()){
+            throw new InvalidEngineEntryException("Engine type is empty, this is invalid!");
         }
-        if(volume == null || !volume.matches(isNumeric)){
-            throw new IllegalArgumentException("Volume is null or not numeric, this is invalid!");
+        if(volume.isBlank() || !volume.matches(isNumeric)){
+            throw new InvalidEngineEntryException("Volume is null or not numeric, this is invalid!");
         }
-        if(fuelType == null){
-            throw new IllegalArgumentException("Fuel type is null, this is invalid!");
+        if(fuelType.isBlank()){
+            throw new InvalidEngineEntryException("Fuel type is empty, this is invalid!");
         }
-        if(horsePower == null || !horsePower.matches(isNumeric)){
-            throw new IllegalArgumentException("Horse power is null or not numeric, this is invalid!");
+        if(horsePower.isBlank() || !horsePower.matches(isNumeric)){
+            throw new InvalidEngineEntryException("Horse power is empty or not numeric, this is invalid!");
         }
-        if(torque == null || !torque.matches(isNumeric)){
-            throw new IllegalArgumentException("Torque power is null or not numeric, this is invalid!");
+        if(torque.isBlank() || !torque.matches(isNumeric)){
+            throw new InvalidEngineEntryException("Torque power is null or not numeric, this is invalid!");
         }
         this.engineId = engineId.toUpperCase();
         this.engineType = engineType;
@@ -51,12 +51,12 @@ public class Engine {
         engines.put(engineId, this);
     }
 
-    public static Engine getEngine(String engineId) {// assinatura da chamada de Excacao em caso de erro
+    public static Engine getEngine(String engineId) throws EngineNotFoundException{// assinatura da chamada de Excacao em caso de erro
         Engine eng = engines.get(engineId);
         if (eng != null) {
             return eng;
         }
-        throw new IllegalArgumentException("Engine ID not founded!");
+        throw new EngineNotFoundException("Engine ID not founded!");
     }
 
     public static int enginesLenght(){

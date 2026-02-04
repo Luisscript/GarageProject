@@ -11,23 +11,27 @@ public class Garage {
     private String size;
     private Map<String, Car> cars = new HashMap<>();
 
-    public Garage(String garageName, Integer size){
+    public Garage(String garageName, Integer size) throws InvalidGarageEntryException{
         this.garageName = garageName;
-        if(size.equals(1)){
-            this.MAXPARKINGSPACE = 7;
-            this.size = "Small";
-        }else if(size.equals(2)){
-            this.MAXPARKINGSPACE = 15;
-            this.size = "Medium";
-        }else if(size.equals(3)){
-            this.MAXPARKINGSPACE = 20;
-            this.size = "Large";
-        }else{
-            throw new IllegalArgumentException("Invalid arguments");
+        if(garageName.isBlank() || size == null){
+            throw new InvalidGarageEntryException("Invalid arguments");
+        }else {
+            if (size.equals(1)) {
+                this.MAXPARKINGSPACE = 7;
+                this.size = "Small";
+            } else if (size.equals(2)) {
+                this.MAXPARKINGSPACE = 15;
+                this.size = "Medium";
+            } else if (size.equals(3)) {
+                this.MAXPARKINGSPACE = 20;
+                this.size = "Large";
+            } else {
+                throw new InvalidGarageEntryException("Invalid arguments");
+            }
         }
     }
 
-    public void addCar(String licensePlate, Car car){
+    public void addCar(String licensePlate, Car car) {
         if(this.usedParkingSpace < this.MAXPARKINGSPACE){
            this.cars.put(licensePlate, car);
             this.usedParkingSpace++;
@@ -36,10 +40,19 @@ public class Garage {
         }
     }
 
-    public Car getCar(String licensePlate){
+    public boolean removeCar(String licensePlate) throws LicensePlateNotFoundException{
+        boolean flag = false;
+        Car car = this.cars.get(licensePlate);
+        if(car!=null){
+            this.cars.remove(licensePlate);
+            return flag = true;
+        }throw new LicensePlateNotFoundException("License plate not founded in garage!");
+    }
+
+    public Car getCar(String licensePlate) throws LicensePlateNotFoundException{
         Car car  =  this.cars.get(licensePlate);
         if(car == null){
-            throw new NullPointerException("Car not found!");
+            throw new LicensePlateNotFoundException("License plate not found!");
         }
         return car;
     }

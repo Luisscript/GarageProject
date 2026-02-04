@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class InvalidEngineEntryException {
+public class InvalidEngineEntryException extends IllegalArgumentException {
+    public InvalidEngineEntryException(String message) {
+        super(message);
+    }
 }

@@ -1,5 +1,5 @@
-public class NullEntry extends RuntimeException{
-    public NullEntry(String message){
+public class InvalidEntryException extends RuntimeException{
+    public InvalidEntryException(String message){
         super(message);
     }
 }

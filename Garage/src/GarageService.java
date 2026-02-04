@@ -1,8 +1,12 @@
 public class GarageService {
-    private Garage garage;
+    private final Garage garage;
 
     public GarageService(Garage aGarage){
         this.garage = aGarage;
+    }
+
+    public boolean removeCar(String licensePlate){
+        return garage.removeCar(licensePlate);
     }
 
     public void startCarEngine(Car car){

@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class InvalidCarEntryException {
+public class InvalidCarEntryException extends IllegalArgumentException{
+    public InvalidCarEntryException(String message){
+        super(message);
+    }
 }

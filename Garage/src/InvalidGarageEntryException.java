@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class InvalidGarageEntryException {
+public class InvalidGarageEntryException extends IllegalArgumentException {
+    public InvalidGarageEntryException(String message) {
+        super(message);
+    }
 }

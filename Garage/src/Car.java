@@ -16,21 +16,21 @@ public class Car {
     private boolean statusEngine = false;
     private static Map<String, Car> cars = new HashMap<>();
 
-    public Car(String licensePlate, String automaker, String model, String color, String engineId) {
-        if(automaker == null || automaker.isEmpty()){
-            throw new IllegalArgumentException("Automaker is empty, this is invalid!");
+    public Car(String licensePlate, String automaker, String model, String color, String engineId) throws InvalidCarEntryException {
+        if(automaker.isBlank()){
+            throw new InvalidCarEntryException("Automaker is empty, this is invalid!");
         }
-        if(model == null || model.isEmpty()){
-            throw new IllegalArgumentException("Model is empty, this is invalid!");
+        if(model.isBlank()){
+            throw new InvalidCarEntryException("Model is empty, this is invalid!");
         }
-        if(color == null || color.isEmpty()){
-            throw new IllegalArgumentException("Color is empty, this is invalid!");
+        if(color.isBlank()){
+            throw new InvalidCarEntryException("Color is empty, this is invalid!");
         }
-        if(engineId == null){
-            throw new IllegalArgumentException("Engine is null, this is invalid!");
+        if(engineId.isBlank()){
+            throw new InvalidCarEntryException("Engine is empty, this is invalid!");
         }
-        if(licensePlate == null){
-            throw new IllegalArgumentException("License plate is null, this is invalid!");
+        if(licensePlate.isBlank()){
+            throw new InvalidCarEntryException("License plate is empty, this is invalid!");
         }
         this.automaker = automaker;
         this.model = model;
@@ -44,7 +44,7 @@ public class Car {
         cars.put(licensePlate, this);
     }
 
-    public String setLicensePlate(String licensePlt) {
+    public String setLicensePlate(String licensePlt) throws InvalidLicensePlateException{
         int lenLicensePlate = 7;
 
         class LicensePlate {
@@ -60,36 +60,36 @@ public class Car {
 
         LicensePlate licensePlate = new LicensePlate(licensePlt);
         if (licensePlate.formattedLicensePlate == null) {
-           throw new IllegalStateException("Invalid license plate, please try again!");
+           throw new InvalidLicensePlateException("Invalid license plate, please try again!");
         } else
             return licensePlate.formattedLicensePlate.toUpperCase();
     }
 
     public String getLicensePlate() {return this.licensePlate;}
 
-    public Engine setEngine(String engineId){
+    public Engine setEngine(String engineId) throws InvalidEngineIdException{
         Engine engine = null;
         try{
             engine = Engine.getEngine(engineId);
         }catch(Exception e){
-            throw new IllegalArgumentException("Invalid engine, please try again!");
+            throw new InvalidEngineIdException("Invalid engine, please try again!");
         }
         return engine;
     }
 
-    public void turnOnEngine(){
+    public void turnOnEngine() throws InvalidEngineStateException {
         if(!this.statusEngine){
         this.statusEngine = true;
     }else{
-            throw new IllegalStateException("Engine already started!");
+            throw new InvalidEngineStateException("Engine already started!");
         }
     }
 
-    public void turnOffEngine(){
+    public void turnOffEngine() throws InvalidEngineStateException {
         if(this.statusEngine){
             this.statusEngine = false;
         }else{
-            throw new IllegalStateException("Engine is already stopped!");
+            throw new InvalidEngineStateException("Engine is already stopped!");
         }
     }
 
@@ -110,10 +110,10 @@ public class Car {
         return toReturn;
     }
 
-    public static Car getCar(String licensePlate){
+    public static Car getCar(String licensePlate) throws CarNotFoundException {
         Car car = cars.get(licensePlate);
         if(car == null){
-            throw new NullPointerException("Car not found!");
+            throw new CarNotFoundException("Car not found!");
         }
         return car;
     }
