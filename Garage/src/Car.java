@@ -127,4 +127,8 @@ public class Car {
             entry.getValue().carFeatures();
         }
     }
+
+    public static int lenMapCars(){
+        return cars.size();
+    }
 }

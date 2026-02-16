@@ -57,15 +57,6 @@ public class Garage {
         return car;
     }
 
-//    public void viewCars(){
-//        for(Map.Entry<String, Car> entry : this.cars.entrySet()){
-//            if(entry.getValue() != null){
-//                entry.getValue().carFeatures();
-//            }
-//            return;
-//        }
-//    }
-
     public List<String> garageInfos(){
         List<String> toreturn = new ArrayList<>();
         toreturn.add(this.garageName);

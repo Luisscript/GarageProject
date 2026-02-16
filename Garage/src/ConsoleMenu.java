@@ -35,8 +35,8 @@ public class ConsoleMenu {
     }
 
     public void showGarageInfosFlow(List<String> list){
-        IO.println("---------Garage Infos---------");
-        IO.println("Name: "+list.get(0)+"\nSize: "+list.get(1));
+        printMessage("---------Garage Infos---------");
+        printMessage("Name: "+list.get(0)+"\nSize: "+list.get(1));
     }
 
     public void removeCarFromGarageFlow() throws InvalidEntryException, LicensePlateNotFoundException{
@@ -51,7 +51,7 @@ public class ConsoleMenu {
         try {
             service.startCarEngine(car);
         } catch (IllegalStateException e) {
-            IO.println("Engine is already on");
+            printMessage("Engine is already on");
         }
     }
 
@@ -59,7 +59,7 @@ public class ConsoleMenu {
         try {
             service.stopCarEngine(car);
         } catch (IllegalStateException e) {
-            IO.println("Engine is already off");
+            printMessage("Engine is already off");
         }
     }
 
