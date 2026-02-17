@@ -16,6 +16,8 @@ public class Car {
     private boolean statusEngine = false;
     private static Map<String, Car> cars = new HashMap<>();
 
+    public Car(){};
+
     public Car(String licensePlate, String automaker, String model, String color, String engineId) throws InvalidCarEntryException {
         if(automaker.isBlank()){
             throw new InvalidCarEntryException("Automaker is empty, this is invalid!");
@@ -131,4 +133,10 @@ public class Car {
     public static int lenMapCars(){
         return cars.size();
     }
+
+    public String getAutomaker(){return this.automaker;}
+
+    public String getModel(){return this.model;}
+
+    public String getColor(){return this.color;}
 }
