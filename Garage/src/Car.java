@@ -140,5 +140,5 @@ public class Car {
 
     public String getColor(){return this.color;}
 
-    public Map<String, Car> getCarsMapa(){return cars;}
+    public Map<String, Car> getCarsMap(){return cars;}
 }
