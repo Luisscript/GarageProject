@@ -139,4 +139,6 @@ public class Car {
     public String getModel(){return this.model;}
 
     public String getColor(){return this.color;}
+
+    public Map<String, Car> getCarsMapa(){return cars;}
 }
