@@ -71,4 +71,14 @@ public class Garage {
         toreturn.add(this.MAXPARKINGSPACE-this.usedParkingSpace);
         return toreturn;
     }
+
+    public int getMaxParkingSpace(){return MAXPARKINGSPACE;}
+
+    public int getUsedParkingSpace(){return usedParkingSpace;}
+
+    public String getGarageName(){return garageName;}
+
+    public String getSize(){return size;}
+
+    public Map<String, Car> getCarsParkedMap(){return this.cars;}
 }
