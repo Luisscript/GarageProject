@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.util.List;
 
 public class GarageController {
@@ -43,14 +44,17 @@ public class GarageController {
         while(true) {
             try {
                 garArgs = ConsoleMenu.getGarArgs();
+                if(Integer.parseInt(garArgs.get(1)) < 1 || Integer.parseInt(garArgs.get(1)) > 3) {
+                    throw new InvalidEntryException("Invalid garage size option!\nTry again!");
+                }
             }catch(InvalidEntryException e){
                 ConsoleMenu.printExcptMessages(e);
                 continue;
-            }if(garArgs != null){
-                return new GarageController(garArgs.get(0), garArgs.get(1));
             }
+                break;
+            }
+            return new GarageController(garArgs.get(0), garArgs.get(1));
         }
-    }
 
     public void createCar(){
         if (getLenMapEngines() > 0) {
