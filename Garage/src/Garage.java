@@ -31,6 +31,8 @@ public class Garage {
         }
     }
 
+
+
     public void addCar(String licensePlate, Car car) {
         if(this.usedParkingSpace < this.MAXPARKINGSPACE){
            this.cars.put(licensePlate, car);
