@@ -6,6 +6,8 @@ public class GarageController {
     private GarageService service = null;
     private ConsoleMenu cMenu = null;
 
+    public GarageController(){}
+
     public GarageController(String garName, String size){
         this.garage = getGarage(garName, Integer.parseInt(size));
         this.service = getService(this.garage);
