@@ -7,7 +7,7 @@ public class Garage {
 
     private int MAXPARKINGSPACE;
     private int usedParkingSpace;
-    private final String garageName;
+    private String garageName;
     private String size;
     private Map<String, Car> cars = new HashMap<>();
 
