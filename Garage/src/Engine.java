@@ -88,4 +88,6 @@ public class Engine {
     public String getFuelType(){return fuelType;}
     public double getHorsePower(){return horsePower;}
     public double getTorque(){return torque;}
+
+    public Map<String, Engine> getEngines(){return engines;}
 }
