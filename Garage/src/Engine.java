@@ -15,6 +15,8 @@ public class Engine {
     private static Map<String, Engine> engines = new HashMap<>();
     private static String isNumeric = "(\\d+\\.?\\d+)$";
 
+    public Engine(){}
+
     public Engine(String engineId, String engineType, String volume, String fuelType, String horsePower, String torque) throws InvalidEngineEntryException{
         if(engineId.isBlank()){
             throw new InvalidEngineIdException("Engine ID is empty, this is invalid!");
