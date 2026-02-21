@@ -13,7 +13,7 @@ public class Engine {
     private double horsePower;
     private double torque;
     private static Map<String, Engine> engines = new HashMap<>();
-    private static String isNumeric = "(\\d+\\.?\\d+)$";
+    private static final String isNumeric = "(\\d+\\.?\\d+)$";
 
     public Engine(){}
 
