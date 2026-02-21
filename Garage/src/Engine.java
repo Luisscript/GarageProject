@@ -81,4 +81,11 @@ public class Engine {
         }
         return toreturn;
     }
+
+    public String getEngineId(){return engineId;}
+    public String getEngineType(){return engineType;}
+    public double getVolume(){return volume;}
+    public String getFuelType(){return fuelType;}
+    public double getHorsePower(){return horsePower;}
+    public double getTorque(){return torque;}
 }
