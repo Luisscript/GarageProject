@@ -11,6 +11,8 @@ public class Garage {
     private String size;
     private Map<String, Car> cars = new HashMap<>();
 
+    public Garage(){}
+
     public Garage(String garageName, Integer size) throws InvalidGarageEntryException{
         this.garageName = garageName;
         if(garageName.isBlank() || size == null){
@@ -30,8 +32,6 @@ public class Garage {
             }
         }
     }
-
-
 
     public void addCar(String licensePlate, Car car) {
         if(this.usedParkingSpace < this.MAXPARKINGSPACE){
