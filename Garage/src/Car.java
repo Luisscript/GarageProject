@@ -14,7 +14,7 @@ public class Car {
     private String licensePlate;
     private Engine engine;
     private boolean statusEngine = false;
-    private static Map<String, Car> cars = new HashMap<>();
+    private static CarRepository cars = CarRepository.getInstance();// todo -> remover esse campo e movê-lo para CarsRepository
 
     public Car(){};
 
@@ -39,12 +39,12 @@ public class Car {
         this.color = color;
         this.engine = Engine.getEngine(engineId);
         this.licensePlate = setLicensePlate(licensePlate);
-        addCarList();
+        cars.putCar(this);
     }
 
-    private void addCarList(){
-        cars.put(licensePlate, this);
-    }
+//    private void addCarList(){
+//        cars.put(licensePlate, this);
+//    }
 
     public String setLicensePlate(String licensePlt) throws InvalidLicensePlateException{
         int lenLicensePlate = 7;
@@ -112,27 +112,27 @@ public class Car {
         return toReturn;
     }
 
-    public static Car getCar(String licensePlate) throws CarNotFoundException {
-        Car car = cars.get(licensePlate);
-        if(car == null){
-            throw new CarNotFoundException("Car not found!");
-        }
-        return car;
-    }
+//    public static Car getCar(String licensePlate) throws CarNotFoundException {// todo -> mover para CarRepository ------------------ ok
+//        Car car = cars.getCar(licensePlate);
+//        if(car == null){
+//            throw new CarNotFoundException("Car not found!");
+//        }
+//        return car;
+//    }
 
     public Engine getEngine(){
         return this.engine;
     }
 
-    public static void carsListFeatures(){
-        for(Map.Entry<String, Car> entry : cars.entrySet()){
-            entry.getValue().carFeatures();
-        }
-    }
+//    public static void carsListFeatures(){
+//        for(Map.Entry<String, Car> entry : cars.entrySet()){// todo -> mover para CarRepository
+//            entry.getValue().carFeatures();
+//        }
+//    }
 
-    public static int lenMapCars(){
-        return cars.size();
-    }
+//    public static int lenMapCars(){// todo -> mover para CarRepository ------------------ ok
+//        return cars.();
+//    }
 
     public String getAutomaker(){return this.automaker;}
 
@@ -140,5 +140,5 @@ public class Car {
 
     public String getColor(){return this.color;}
 
-    public Map<String, Car> getCarsMap(){return cars;}
+//    public Map<String, Car> getCarsMap(){return cars;}// todo -> mover para CarRepository ------------------ ok
 }
