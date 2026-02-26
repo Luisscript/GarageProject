@@ -42,10 +42,6 @@ public class Car {
         cars.putCar(this);
     }
 
-    private void addCarList(){
-        cars.put(licensePlate, this);
-    }
-
     public String setLicensePlate(String licensePlt) throws InvalidLicensePlateException{
         int lenLicensePlate = 7;
 
@@ -112,26 +108,8 @@ public class Car {
         return toReturn;
     }
 
-    public static Car getCar(String licensePlate) throws CarNotFoundException {
-        Car car = cars.get(licensePlate);
-        if(car == null){
-            throw new CarNotFoundException("Car not found!");
-        }
-        return car;
-    }
-
     public Engine getEngine(){
         return this.engine;
-    }
-
-    public static void carsListFeatures(){
-        for(Map.Entry<String, Car> entry : cars.entrySet()){
-            entry.getValue().carFeatures();
-        }
-    }
-
-    public static int lenMapCars(){
-        return cars.size();
     }
 
     public String getAutomaker(){return this.automaker;}
@@ -139,6 +117,4 @@ public class Car {
     public String getModel(){return this.model;}
 
     public String getColor(){return this.color;}
-
-    public Map<String, Car> getCarsMap(){return cars;}
 }
