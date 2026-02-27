@@ -38,7 +38,7 @@ public class GarageController {
     }
 
     private int getLenMapCars(){
-        return Car.lenMapCars();
+        return CarRepository.getInstance().lenCarsRepository();
     }
 
     public static GarageController getGarageController(){
