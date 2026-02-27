@@ -114,7 +114,7 @@ public class ConsoleMenu {
     public Car searchCarFlow() throws CarNotFoundException, InvalidEntryException{
         printMessage("Searching car...");
         String licensePlate = ConsoleMenu.getTextEntry("Car Plate: ");
-        Car car = Car.getCar(licensePlate);
+        Car car = CarRepository.getInstance().getCar(licensePlate);
         if(car == null){
             throw new CarNotFoundException("Car not found!");
         }
