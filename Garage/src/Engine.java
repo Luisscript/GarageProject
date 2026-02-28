@@ -46,23 +46,6 @@ public class Engine {
         this.fuelType = fuelType;
         this.horsePower = Double.parseDouble(horsePower);
         this.torque = Double.parseDouble(torque);
-        addEngineList();
-    }
-
-    public void addEngineList(){
-        engines.put(engineId, this);
-    }
-
-    public static Engine getEngine(String engineId) throws EngineNotFoundException{// assinatura da chamada de Excacao em caso de erro
-        Engine eng = engines.get(engineId);
-        if (eng != null) {
-            return eng;
-        }
-        throw new EngineNotFoundException("Engine ID not founded!");
-    }
-
-    public static int enginesLenght(){
-        return engines.size();
         engines.putEngine(this);
     }
 
@@ -89,6 +72,4 @@ public class Engine {
     public String getFuelType(){return fuelType;}
     public double getHorsePower(){return horsePower;}
     public double getTorque(){return torque;}
-
-    public Map<String, Engine> getEngines(){return engines;}
 }
