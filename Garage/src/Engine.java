@@ -12,7 +12,7 @@ public class Engine {
     private String fuelType;
     private double horsePower;
     private double torque;
-    private static Map<String, Engine> engines = new HashMap<>();
+    private static EngineRepository engines = EngineRepository.getInstance();
     private static final String isNumeric = "(\\d+\\.?\\d+)$";
 
     public Engine(){}
@@ -21,7 +21,7 @@ public class Engine {
         if(engineId.isBlank()){
             throw new InvalidEngineIdException("Engine ID is empty, this is invalid!");
         }else{
-            if(engines.containsKey(engineId)){
+            if(engines.containsEngineId(engineId)){
                 throw new InvalidEngineEntryException("This engine id already exists!");
             }
         }
@@ -63,6 +63,7 @@ public class Engine {
 
     public static int enginesLenght(){
         return engines.size();
+        engines.putEngine(this);
     }
 
     public List<Object> getEngineFeatures(){
