@@ -18,7 +18,7 @@ public class Car {
 
     public Car(){};
 
-    public Car(String licensePlate, String automaker, String model, String color, String engineId) throws InvalidCarEntryException {
+    public Car(String licensePlate, String automaker, String model, String color, String engineId) throws InvalidCarEntryException, InvalidLicensePlateException {
         if(automaker.isBlank()){
             throw new InvalidCarEntryException("Automaker is empty, this is invalid!");
         }
@@ -37,7 +37,7 @@ public class Car {
         this.automaker = automaker;
         this.model = model;
         this.color = color;
-        this.engine = Engine.getEngine(engineId);
+        this.engine = setEngine(engineId);
         this.licensePlate = setLicensePlate(licensePlate);
         cars.putCar(this);
     }
@@ -65,13 +65,11 @@ public class Car {
 
     public String getLicensePlate() {return this.licensePlate;}
 
-    public Engine setEngine(String engineId) throws InvalidEngineIdException{
+    public static Engine setEngine(String engineId){
         Engine engine = null;
-        try{
-            engine = Engine.getEngine(engineId);
-        }catch(Exception e){
-            throw new InvalidEngineIdException("Invalid engine, please try again!");
-        }
+        try {
+            engine = EngineRepository.getInstance().getEngine(engineId);
+        } catch(EngineNotFoundException e){throw new InvalidEngineIdException(engineId+" not found, please try again");}
         return engine;
     }
 
