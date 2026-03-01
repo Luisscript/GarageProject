@@ -66,7 +66,7 @@ public class GarageController {
                     List<String> carArgs = cMenu.createCarFlow();
                     car = getCar(carArgs.get(4), carArgs.get(0), carArgs.get(1), carArgs.get(2), carArgs.get(3));
                 } catch (InvalidEntryException | InvalidCarEntryException | EngineNotFoundException |
-                         InvalidLicensePlateException e) {
+                         InvalidLicensePlateException | InvalidEngineIdException e) {
                     ConsoleMenu.printExcptMessages(e);
                 }if(car != null){
                     return;
