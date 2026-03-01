@@ -34,7 +34,7 @@ public class GarageController {
     }
 
     private int getLenMapEngines(){
-        return Engine.enginesLenght();
+        return EngineRepository.getInstance().lenEnginesRepository();
     }
 
     private int getLenMapCars(){
